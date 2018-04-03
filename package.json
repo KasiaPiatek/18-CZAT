@@ -27,7 +27,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "SET NODE_ENV=development & nodemon app/app.js",
-    "start": "webpack"
+    "start": "webpack-dev-server --hot --env development"
   },
   "author": "",
   "license": "ISC"
