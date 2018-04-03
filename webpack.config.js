@@ -8,9 +8,9 @@ var OptimizeJsPlugin = require('optimize-js-plugin');
 
 
 module.exports = {
-    entry: './build/index.js',
+    entry: './client/index.js',
         output: {
-        path: path.resolve(__dirname, 'build'),
+        path: path.resolve(__dirname, 'public'),
         filename: 'app.bundle.js'
     },
     module: {

@@ -44,18 +44,19 @@ class App extends Component {
   socket.emit('join', name);
   }
 
-  
-
-};
-
-
 render() {
+    return this.state.name !== '' ? (
+      this.renderLayout()
+    ) : this.renderUserForm() // zaimplementowane w późniejszej części
+  }
+
+/*render() {
     return this.state.name !== '' ? (
     this.renderLayout() 
     ) : this.renderUserForm() {
     	return (<UserForm onUserSubmit={name => this.handleUserSubmit(name)} />)
     }
-}  // <warunek_do_sprawdzenia> ? <przypadek_true> : <przypadek_false> 
+} // <warunek_do_sprawdzenia> ? <przypadek_true> : <przypadek_false> */
 
 
 renderLayout() {
@@ -86,5 +87,11 @@ renderLayout() {
       </div>
    );
 }
+
+renderUserForm() {
+   return (<UserForm onUserSubmit={name => this.handleUserSubmit(name)} />)
+}
+
+};
 
 export default App;
