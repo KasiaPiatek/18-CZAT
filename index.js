@@ -7,7 +7,7 @@ const server = http.createServer(app);
 const io = socketIo(server);
 const UsersService = require('./UsersService');
 
-const usersService = new UsersService();
+const userService = new UsersService();
 
 app.use(express.static(__dirname + '/public'));
 
@@ -22,20 +22,20 @@ app.get('/', function(req, res){
 io.on('connection', function(socket) {
     socket.on('join', function(name){
       //uzytkowknik pojawil sie a pliakcji
-      usersService.addUser({
+      userService.addUser({
         id: socket.id,
         name
     });
     io.emit('update', {
-      users: usersService.getAllUsers()
+      users: userService.getAllUsers()
     });
   });
 
 
 	socket.on('disconnect', () => {
-    usersService.removeUser(socket.id);
+    userService.removeUser(socket.id);
     socket.broadcast.emit('update', {
-      users: usersService.getAllUsers()
+      users: userService.getAllUsers()
     });
   });
 
@@ -47,7 +47,7 @@ io.on('connection', function(socket) {
       text: message.text,
       from: name
     });
-    console.log('message', message)
+    
   });
 
   });
