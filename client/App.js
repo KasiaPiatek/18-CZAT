@@ -23,11 +23,13 @@ class App extends Component {
   socket.on('message', message => this.messageReceive(message));
   socket.on('update', ({users}) => this.chatUpdate(users));
   }
+
   //ito tez nie wiadomo cyz tuma byc czy poza
   messageReceive(message) {
   const messages = [message, ...this.state.messages];
   this.setState({messages});
   }
+
   //i to
   chatUpdate(users) {
   this.setState({users});

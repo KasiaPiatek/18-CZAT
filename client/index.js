@@ -4,12 +4,18 @@ import { AppContainer } from 'react-hot-loader';
 
 import App from './App';
 
-const render = (Component) => {
+
+
+
+
+
+ReactDOM.render(<App/>,document.getElementById('app'));
+/*const render = (Component) => {
   ReactDOM.render(
     <AppContainer>
       <Component/>
     </AppContainer>,
-    document.getElementById('root')
+    document.getElementById('app')
   );
 };
 
@@ -20,4 +26,4 @@ if (module.hot) {
     const NewApp = require('./App').default;
     render(NewApp)
   });
-}
+}*/
