@@ -22,20 +22,20 @@ app.get('/', function(req, res){
 io.on('connection', function(socket) {
     socket.on('join', function(name){
       //uzytkowknik pojawil sie a pliakcji
-      userService.addUser({
+      usersService.addUser({
         id: socket.id,
         name
     });
     io.emit('update', {
-      users: userService.getAllUsers()
+      users: usersService.getAllUsers()
     });
   });
 
 
 	socket.on('disconnect', () => {
-    userService.removeUser(socket.id);
+    usersService.removeUser(socket.id);
     socket.broadcast.emit('update', {
-      users: userService.getAllUsers()
+      users: usersService.getAllUsers()
     });
   });
 

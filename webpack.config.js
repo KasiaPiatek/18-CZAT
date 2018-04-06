@@ -8,6 +8,17 @@ var OptimizeJsPlugin = require('optimize-js-plugin');
 
 
 module.exports = {
+
+    plugins: [new HtmlWebpackPlugin({
+        template: 'build/index.html',
+        filename: 'index.html',
+        inject: 'body'
+    }),
+    new webpack.optimize.UglifyJsPlugin(),
+    new OptimizeJsPlugin({
+        sourceMap: false
+    })
+    ],
     entry: './client/index.js',
         output: {
         path: path.resolve(__dirname, 'public'),
@@ -33,14 +44,13 @@ module.exports = {
             }
         ]
     },
-    plugins: [new HtmlWebpackPlugin({
-        template: 'build/index.html',
-        filename: 'index.html',
-        inject: 'body'
-    }),
-    new webpack.optimize.UglifyJsPlugin(),
-    new OptimizeJsPlugin({
-        sourceMap: false
-    }),
-    ]
-};
+    devServer: {
+        proxy: {
+      '/socket.io': {
+          target: 'http://localhost:3000',
+          ws: true
+        }
+    }
+
+}
+}
